@@ -1,2 +1,2 @@
 # spacenjoy.github.io
-vizitka pro firmu Space
+vizitka pro (neexistující) firmu Space N' Joy
