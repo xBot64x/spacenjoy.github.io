@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Space N' Joy</title>
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+	<link rel="stylesheet" href="styles.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <div class="container">
+        <img class="logo" src="images/Logo_ve_hvezdach.svg" alt="logo">
+    </div>
+    <div class="copyright">
+        ©2024 Nikolka
+    </div>
+    
+
+    <script>
+        function createStar() {
+          const star = document.createElement('div');
+          star.className = 'star';
+          document.body.appendChild(star);
+    
+          const startX = window.innerWidth / 2;
+          const startY = window.innerHeight / 2;
+    
+          star.style.left = startX + 'px';
+          star.style.top = startY + 'px';
+    
+          let speed = 3;
+          let size = 5;
+    
+          const angle = Math.random() * 360;
+          let deltaX = Math.cos(angle) * speed;
+          let deltaY = Math.sin(angle) * speed;
+    
+          function updateStar() {
+            const rect = star.getBoundingClientRect();
+    
+            if (
+              rect.left + rect.width < 0 ||
+              rect.top + rect.height < 0 ||
+              rect.left > window.innerWidth ||
+              rect.top > window.innerHeight
+            ) {
+              // Remove star if it's outside the viewport
+              document.body.removeChild(star);
+            } else {
+              size += 0.05; // Increase size gradually
+              star.style.width = size + 'px';
+              star.style.height = size + 'px';
+              star.style.left = rect.left + deltaX + 'px';
+              star.style.top = rect.top + deltaY + 'px';
+              requestAnimationFrame(updateStar);
+            }
+          }
+    
+          updateStar();
+        }
+    
+        function createStars() {
+          createStar();
+          setTimeout(createStars, 20); // Adjust the interval (in milliseconds) between star creations
+        }
+    
+        function animateStars() {
+          createStars();
+        }
+    
+        window.addEventListener('DOMContentLoaded', () => {
+          animateStars();
+        });
+      </script>
+</body>
+</html>
